@@ -3,18 +3,19 @@ package com.rest_with_spring_and_java_erudio.web.controller;
 import com.rest_with_spring_and_java_erudio.domain.entity.Person;
 import com.rest_with_spring_and_java_erudio.service.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/persons")
+@RequestMapping(value = "/persons")
 public class PersonController {
 
     @Autowired
     private PersonServices services;
 
-    @RequestMapping("/{id}")
+    @RequestMapping(value = "/{id}")
     public Person getById(@PathVariable Long id) {
         return services.findById(id);
     }
@@ -30,8 +31,9 @@ public class PersonController {
     }
 
     @DeleteMapping("/{id}")
-    public Person delete(@PathVariable Long id) {
-        return  services.delete(id);
+    public ResponseEntity delete(@PathVariable Long id) {
+        services.delete(id);
+        return  ResponseEntity.noContent().build();
     }
 
     @PostMapping
