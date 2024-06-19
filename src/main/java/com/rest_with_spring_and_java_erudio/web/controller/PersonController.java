@@ -1,5 +1,6 @@
 package com.rest_with_spring_and_java_erudio.web.controller;
 
+import com.rest_with_spring_and_java_erudio.data.vo.v1.PersonVO;
 import com.rest_with_spring_and_java_erudio.domain.entity.Person;
 import com.rest_with_spring_and_java_erudio.service.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +17,17 @@ public class PersonController {
     private PersonServices services;
 
     @RequestMapping(value = "/{id}")
-    public Person getById(@PathVariable Long id) {
+    public PersonVO getById(@PathVariable Long id) {
         return services.findById(id);
     }
 
     @GetMapping
-    public List<Person> getAll() {
+    public List<PersonVO> getAll() {
         return services.findAll();
     }
 
     @PutMapping("/{id}")
-    public Person update(@PathVariable Long id, @RequestBody Person person) {
+    public PersonVO update(@PathVariable Long id, @RequestBody PersonVO person) {
         return services.update(id, person);
     }
 
@@ -37,7 +38,7 @@ public class PersonController {
     }
 
     @PostMapping
-    public Person create(@RequestBody Person person) {
+    public PersonVO create(@RequestBody PersonVO person) {
         return services.create(person);
     }
 

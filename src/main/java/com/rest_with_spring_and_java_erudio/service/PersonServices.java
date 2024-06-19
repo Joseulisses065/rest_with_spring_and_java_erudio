@@ -1,5 +1,7 @@
 package com.rest_with_spring_and_java_erudio.service;
 
+import com.rest_with_spring_and_java_erudio.data.mapper.DozerMapper;
+import com.rest_with_spring_and_java_erudio.data.vo.v1.PersonVO;
 import com.rest_with_spring_and_java_erudio.domain.entity.Person;
 import com.rest_with_spring_and_java_erudio.repository.PersonRespository;
 import com.rest_with_spring_and_java_erudio.web.exception.EntityNotFoundException;
@@ -17,25 +19,25 @@ public class PersonServices {
     private final AtomicLong count = new AtomicLong();
     private Logger logger = Logger.getLogger(PersonServices.class.getName());
 
-    public Person findById(Long id) {
+    public PersonVO findById(Long id) {
         logger.info("finding person");
         Person person = personRespository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException(String.format("User with id {%s} not found", id))
         );
-        return person;
+        return DozerMapper.parseObject(person, PersonVO.class);
     }
 
-    public List<Person> findAll() {
+    public List<PersonVO> findAll() {
         logger.info("finding all persons");
-        return personRespository.findAll();
+        return DozerMapper.parseListObjects(personRespository.findAll(),PersonVO.class);
     }
 
-    public Person create(Person person) {
-        Person entity = personRespository.save(person);
-        return entity;
+    public PersonVO create(PersonVO person) {
+        Person entity = personRespository.save(DozerMapper.parseObject(person, Person.class));
+        return DozerMapper.parseObject(entity, PersonVO.class);
     }
 
-    public Person update(Long id, Person person) {
+    public PersonVO update(Long id, PersonVO person) {
         Person entity = personRespository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("user of you want update not found")
         );
@@ -43,16 +45,17 @@ public class PersonServices {
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
-        return personRespository.save(entity);
+        Person personResponse =  personRespository.save(DozerMapper.parseObject(entity,Person.class));
+        return DozerMapper.parseObject(personResponse,PersonVO.class);
     }
 
-    public Person delete(Long id) {
+    public PersonVO delete(Long id) {
         Person entity = personRespository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("user of you want delete not found")
         );
         logger.info("Deleting person");
         personRespository.delete(entity);
-        return entity;
+        return DozerMapper.parseObject(entity,PersonVO.class);
     }
 
 
