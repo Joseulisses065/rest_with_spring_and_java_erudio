@@ -1,6 +1,6 @@
 package com.rest_with_spring_and_java_erudio.service;
 
-import com.rest_with_spring_and_java_erudio.data.mapper.DozerMapper;
+import com.rest_with_spring_and_java_erudio.data.mapper.DtoModelMapper;
 import com.rest_with_spring_and_java_erudio.data.vo.v1.PersonVO;
 import com.rest_with_spring_and_java_erudio.domain.entity.Person;
 import com.rest_with_spring_and_java_erudio.repository.PersonRespository;
@@ -24,17 +24,17 @@ public class PersonServices {
         Person person = personRespository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException(String.format("User with id {%s} not found", id))
         );
-        return DozerMapper.parseObject(person, PersonVO.class);
+        return DtoModelMapper.parseObject(person, PersonVO.class);
     }
 
     public List<PersonVO> findAll() {
         logger.info("finding all persons");
-        return DozerMapper.parseListObjects(personRespository.findAll(),PersonVO.class);
+        return DtoModelMapper.parseListObjects(personRespository.findAll(),PersonVO.class);
     }
 
     public PersonVO create(PersonVO person) {
-        Person entity = personRespository.save(DozerMapper.parseObject(person, Person.class));
-        return DozerMapper.parseObject(entity, PersonVO.class);
+        Person entity = personRespository.save(DtoModelMapper.parseObject(person, Person.class));
+        return DtoModelMapper.parseObject(entity, PersonVO.class);
     }
 
     public PersonVO update(Long id, PersonVO person) {
@@ -45,8 +45,8 @@ public class PersonServices {
         entity.setLastName(person.getLastName());
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
-        Person personResponse =  personRespository.save(DozerMapper.parseObject(entity,Person.class));
-        return DozerMapper.parseObject(personResponse,PersonVO.class);
+        Person personResponse =  personRespository.save(DtoModelMapper.parseObject(entity,Person.class));
+        return DtoModelMapper.parseObject(personResponse,PersonVO.class);
     }
 
     public PersonVO delete(Long id) {
@@ -55,7 +55,7 @@ public class PersonServices {
         );
         logger.info("Deleting person");
         personRespository.delete(entity);
-        return DozerMapper.parseObject(entity,PersonVO.class);
+        return DtoModelMapper.parseObject(entity,PersonVO.class);
     }
 
 
