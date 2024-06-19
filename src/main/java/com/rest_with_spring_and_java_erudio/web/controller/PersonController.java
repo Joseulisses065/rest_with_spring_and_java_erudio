@@ -10,16 +10,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/persons")
+@RequestMapping(value = "/api/v1/persons")
 public class PersonController {
 
     @Autowired
     private PersonServices services;
 
-    @RequestMapping(value = "/{id}")
+    @GetMapping(value = "/{id}")
     public PersonVO getById(@PathVariable Long id) {
         return services.findById(id);
     }
+
 
     @GetMapping
     public List<PersonVO> getAll() {
