@@ -1,18 +1,22 @@
 package com.rest_with_spring_and_java_erudio.data.vo.v1;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 
-public class PersonVO {
-    private Long id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.springframework.hateoas.RepresentationModel;
+
+import java.io.Serializable;
+@JsonPropertyOrder({"key","firstName","lastName","address","gender"})
+public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
+    @JsonProperty("id")
+    private Long key;
     private String firstName;
     private String lastName;
     private String address;
     private String gender;
 
     public PersonVO(Long id, String firstName, String lastName, String address, String gender) {
-        this.id = id;
+        this.key = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -22,12 +26,12 @@ public class PersonVO {
     public PersonVO() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getKey() {
+        return key;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setKey(Long key) {
+        this.key = key;
     }
 
     public String getFirstName() {

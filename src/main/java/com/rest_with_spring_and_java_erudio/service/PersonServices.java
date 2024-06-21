@@ -5,6 +5,7 @@ import com.rest_with_spring_and_java_erudio.data.vo.v1.PersonVO;
 import com.rest_with_spring_and_java_erudio.domain.entity.Person;
 import com.rest_with_spring_and_java_erudio.repository.PersonRespository;
 import com.rest_with_spring_and_java_erudio.web.exception.EntityNotFoundException;
+import com.rest_with_spring_and_java_erudio.web.exception.RequiredObjectIsNullException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +34,13 @@ public class PersonServices {
     }
 
     public PersonVO create(PersonVO person) {
+        if (person == null)throw new RequiredObjectIsNullException();
         Person entity = personRespository.save(VOModelMapper.parseObject(person, Person.class));
         return VOModelMapper.parseObject(entity, PersonVO.class);
     }
 
     public PersonVO update(Long id, PersonVO person) {
+        if (person == null)throw new RequiredObjectIsNullException();
         Person entity = personRespository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("user of you want update not found")
         );
