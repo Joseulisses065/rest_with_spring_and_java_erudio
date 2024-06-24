@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
+import com.rest_with_spring_and_java_erudio.data.mapper.VOModelMapper;
 import com.rest_with_spring_and_java_erudio.data.vo.v1.PersonVO;
 import com.rest_with_spring_and_java_erudio.domain.entity.Person;
 import com.rest_with_spring_and_java_erudio.unittest.mapper.mocks.MockPerson;
