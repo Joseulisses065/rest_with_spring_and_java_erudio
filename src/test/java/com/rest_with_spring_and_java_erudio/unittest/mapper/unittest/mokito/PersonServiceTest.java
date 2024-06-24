@@ -6,7 +6,7 @@ import static org.mockito.Mockito.when;
 
 import com.rest_with_spring_and_java_erudio.data.vo.v1.PersonVO;
 import com.rest_with_spring_and_java_erudio.domain.entity.Person;
-import com.rest_with_spring_and_java_erudio.repository.PersonRespository;
+import com.rest_with_spring_and_java_erudio.repository.PersonRepository;
 import com.rest_with_spring_and_java_erudio.service.PersonServices;
 import com.rest_with_spring_and_java_erudio.unittest.mapper.mocks.MockPerson;
 import com.rest_with_spring_and_java_erudio.web.exception.RequiredObjectIsNullException;
@@ -31,7 +31,7 @@ public class PersonServiceTest {
     @InjectMocks
     private PersonServices services;
     @Mock
-    private PersonRespository respository;
+    private PersonRepository respository;
 
 
     @BeforeEach
