@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     private static final MediaType MEDIA_TYPE_APPLICATION_YML = MediaType.valueOf("application/x-yaml");
-    @Value("${cors.originPatterns:http://localhost:8080")
+    @Value("${cors.originPatterns:http://localhost:8080}")
     private String corsOriginPatterns = "";
 
     /*VIA QUERY PARAM http://localhost:8080/api/v1/persons/5?mediaType=json
