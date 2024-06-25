@@ -27,7 +27,7 @@ public class PersonController {
 
     @Autowired
     private PersonServices services;
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = {"http://localhost:8080","https://dicasdti.com.br"})
     @GetMapping(value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @Operation(summary = "Finds a person", description = "Finds a person", tags = {"People"}, responses = {
@@ -44,7 +44,7 @@ public class PersonController {
         return vo;
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = {"http://localhost:8080","https://dicasdti.com.br"})
     @GetMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @Operation(summary = "Finds all people", description = "Finds all people", tags = {"People"}, responses = {
@@ -62,7 +62,7 @@ public class PersonController {
         return vo;
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = {"http://localhost:8080","https://dicasdti.com.br"})
     @PutMapping(value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -80,7 +80,7 @@ public class PersonController {
         return vo;
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
+    @CrossOrigin(origins = {"http://localhost:8080","https://dicasdti.com.br"})
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a person", description = "Delete a person", tags = {"People"}, responses = {
             @ApiResponse(description = "No content", responseCode = "201",content = @Content),
