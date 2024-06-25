@@ -25,6 +25,7 @@ public class BookController {
     @Autowired
     private BookServices services;
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @Operation(summary = "Finds a book", description = "Finds a book", tags = {"Books"}, responses = {
@@ -41,7 +42,7 @@ public class BookController {
         return vo;
     }
 
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @Operation(summary = "Finds all books", description = "Finds all books", tags = {"Books"}, responses = {
@@ -59,6 +60,7 @@ public class BookController {
         return vo;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping(value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -76,6 +78,7 @@ public class BookController {
         return vo;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a person", description = "Delete a person", tags = {"Books"}, responses = {
             @ApiResponse(description = "No content", responseCode = "201",content = @Content),
@@ -88,6 +91,7 @@ public class BookController {
         return ResponseEntity.noContent().build();
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PostMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})

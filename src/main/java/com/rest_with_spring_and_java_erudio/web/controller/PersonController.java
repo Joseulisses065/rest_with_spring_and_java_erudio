@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//@CrossOrigin permitindo cors pelo controller
 @RestController
 @RequestMapping(value = "/api/v1/persons")
 @Tag(name = "People", description = "Endpoints form managing People")
@@ -26,7 +27,7 @@ public class PersonController {
 
     @Autowired
     private PersonServices services;
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @Operation(summary = "Finds a person", description = "Finds a person", tags = {"People"}, responses = {
@@ -43,7 +44,7 @@ public class PersonController {
         return vo;
     }
 
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @Operation(summary = "Finds all people", description = "Finds all people", tags = {"People"}, responses = {
@@ -61,6 +62,7 @@ public class PersonController {
         return vo;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @PutMapping(value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -78,6 +80,7 @@ public class PersonController {
         return vo;
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a person", description = "Delete a person", tags = {"People"}, responses = {
             @ApiResponse(description = "No content", responseCode = "201",content = @Content),
@@ -90,6 +93,7 @@ public class PersonController {
         return ResponseEntity.noContent().build();
     }
 
+    @CrossOrigin(origins = {"http://localhost:8080","https://dicasdti.com.br"})
     @PostMapping(
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
